@@ -21,8 +21,10 @@ class TransactionsRepository {
     // TODO
   }
 
-  public create(): Transaction {
-    // TODO
+  public create({title,value,type}:Omit<Transaction,'id'>): Transaction {
+    const newTransaction = new Transaction({title,value,type});
+    this.transactions.push(newTransaction);
+    return newTransaction;
   }
 }
 

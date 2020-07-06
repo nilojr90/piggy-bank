@@ -8,8 +8,16 @@ class CreateTransactionService {
     this.transactionsRepository = transactionsRepository;
   }
 
-  public execute(): Transaction {
-    // TODO
+  public execute(title:string , value:number, type:string ): Transaction {
+    var validType: 'income' | 'outcome';
+
+    if(type === 'income' || type === 'outcome'){
+        validType = type;
+    }else{
+      throw new Error("Invalid type");
+    }
+
+    return this.transactionsRepository.create({title,value,type});
   }
 }
 
