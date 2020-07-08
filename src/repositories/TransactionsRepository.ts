@@ -1,10 +1,5 @@
 import Transaction from '../models/Transaction';
-
-interface Balance {
-  income: number;
-  outcome: number;
-  total: number;
-}
+import Balance from '../models/Balance';
 
 class TransactionsRepository {
   private transactions: Transaction[];
@@ -18,7 +13,24 @@ class TransactionsRepository {
   }
 
   public getBalance(): Balance {
-    // TODO
+
+    const incomeSum = this.transactions.reduce((first,current)=>{
+      if(current.type === first.type){
+        first.value = first.value + current.value;
+      }
+      return first;
+
+    },new Transaction({ title:'sum', value: 0 , type: 'income' }));
+
+    const outcomeSum = this.transactions.reduce((first,current)=>{
+      if(current.type === first.type){
+        first.value = first.value + current.value;
+      }
+      return first;
+
+    },new Transaction({ title:'sum', value: 0 , type: 'outcome' }));
+
+    return new Balance({income:incomeSum.value, outcome:outcomeSum.value});
   }
 
   public create({title,value,type}:Omit<Transaction,'id'>): Transaction {
