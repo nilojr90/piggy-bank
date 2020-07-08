@@ -17,6 +17,14 @@ class CreateTransactionService {
       throw new Error("Invalid type");
     }
 
+    if(type ==='outcome'){
+      const balance = this.transactionsRepository.getBalance();
+      if(value > balance.total){
+        throw new Error("Balance error");
+      }
+    }
+
+
     return this.transactionsRepository.create({title,value,type});
   }
 }
