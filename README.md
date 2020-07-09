@@ -1,6 +1,6 @@
 # Piggy Bank 💲
 
-Aplicação, Back-end para gerenciamento finançeiro, em que é possível registrar e listar transações.
+Aplicação, Back-end para gerenciamento financeiro, em que é possível registrar e listar transações.
 
 Feito como exercício do curso "GoStack".
 
